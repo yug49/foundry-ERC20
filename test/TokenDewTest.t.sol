@@ -5,6 +5,7 @@ pragma solidity ^0.8.19;
 import {Test} from "../lib/forge-std/src/Test.sol";
 import {DeployTokenDew} from "../script/DeployTokenDew.s.sol";
 import {TokenDew} from "../src/TokenDew.sol";
+import {console} from "../lib/forge-std/src/Script.sol";
 
 contract TokenDewTest is Test{
     TokenDew public tokenDew;
@@ -19,6 +20,7 @@ contract TokenDewTest is Test{
         deployer = new DeployTokenDew();
         tokenDew = deployer.run();
 
+        console.log("here", address(msg.sender));
         vm.prank(address(msg.sender));
         tokenDew.transfer(bob, STARTING_BALANCE);
     }
